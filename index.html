@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LocalShoppie — An AI Stylist on WhatsApp for Local Stores</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="description" content="LocalShoppie is an AI stylist on WhatsApp for local stores. Shoppers scan a QR code, get outfit suggestions that suit them with a virtual try-on, and buy in a tap.">
 <style>
   :root{
     --ink:#16261f;          /* deep green-charcoal */
@@ -28,7 +34,7 @@
     --radius:20px;
     --shadow:0 30px 60px -28px rgba(11,132,87,.30);
     --shadow-sm:0 12px 28px -16px rgba(22,38,31,.20);
-    --grad:linear-gradient(135deg,#34d399 0%,#10b981 52%,#0b8457 100%);
+    --grad:linear-gradient(135deg,#4ade80 0%,#22c55e 55%,#16a34a 100%);
     --grad-soft:linear-gradient(135deg,#e7faf0 0%,#e9f8ef 100%);
     --grad-pink:linear-gradient(135deg,#ff6db8 0%,#ff2d8e 100%);
   }
@@ -44,7 +50,7 @@
   .btn-wa{background:var(--green);color:#fff;box-shadow:0 14px 30px -12px rgba(37,211,102,.6)}
   .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
   .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--green-deep);background:#e7faf0;padding:7px 15px;border-radius:999px}
-  section{padding:92px 0}
+  section{padding:30px 0}
   h2{font-size:40px;line-height:1.12;letter-spacing:-.025em;color:var(--ink)}
   .lead{font-size:18px;color:var(--ink-soft);max-width:640px}
   .sec-head{max-width:700px}
@@ -53,11 +59,8 @@
 
   /* LOGO (Barbie-pink LS monogram) */
   .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)}
-  .logo .mark{width:40px;height:40px;border-radius:12px;background:var(--grad-pink);display:grid;place-items:center;box-shadow:0 8px 18px -7px rgba(255,45,142,.65);position:relative;overflow:hidden}
-  .logo .mark::after{content:"";position:absolute;top:-30%;left:-10%;width:70%;height:60%;background:rgba(255,255,255,.35);border-radius:50%;filter:blur(4px)}
-  .logo .mark .ls{position:relative;z-index:2;color:#fff;text-shadow:0 1px 1px rgba(180,0,90,.35);display:inline-flex;align-items:center}
-  .logo .mark .ls .l{font-family:"Trebuchet MS","Segoe UI",sans-serif;font-style:italic;font-weight:800;font-size:19px;letter-spacing:-.04em}
-  .logo .mark .ls .s{font-family:"Snell Roundhand","Brush Script MT","Segoe Script","Apple Chancery",cursive;font-weight:700;font-size:19px;line-height:1;margin-left:1px}
+  .logo .mark{width:40px;height:40px;border-radius:12px;overflow:hidden;box-shadow:0 8px 18px -7px rgba(255,45,142,.65);flex:none}
+  .logo .mark img{width:100%;height:100%;display:block}
 
   /* NAV */
   header.nav{position:sticky;top:0;z-index:50;background:rgba(247,251,248,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -71,7 +74,7 @@
      radial-gradient(900px 520px at 88% -8%,#dcf7e8 0,transparent 58%),
      radial-gradient(820px 520px at -5% 8%,#e6f6ee 0,transparent 55%),
      radial-gradient(600px 400px at 60% 120%,#fff0f8 0,transparent 60%);
-     padding-top:58px;overflow:hidden}
+     padding-top:40px;overflow:hidden}
   .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:54px;align-items:center}
   .hero h1{font-size:56px;line-height:1.04;letter-spacing:-.035em;margin:20px 0 20px;color:var(--ink)}
   .hero h1 .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -90,9 +93,8 @@
   .phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:118px;height:24px;background:#13241c;border-radius:0 0 16px 16px;z-index:5}
   .screen{background:#ECE5DD;border-radius:34px;overflow:hidden;height:610px;display:flex;flex-direction:column}
   .wa-top{background:var(--green-dark);color:#fff;padding:36px 14px 12px;display:flex;align-items:center;gap:11px}
-  .wa-top .av{width:40px;height:40px;border-radius:50%;background:var(--grad-pink);display:flex;align-items:center;justify-content:center;color:#fff}
-  .wa-top .av .l{font-family:"Trebuchet MS",sans-serif;font-style:italic;font-weight:800;font-size:16px}
-  .wa-top .av .s{font-family:"Snell Roundhand","Brush Script MT","Segoe Script",cursive;font-weight:700;font-size:16px;line-height:1;margin-left:1px}
+  .wa-top .av{width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--grad-pink);display:flex;align-items:center;justify-content:center;flex:none}
+  .wa-top .av img{width:100%;height:100%;object-fit:cover;display:block}
   .wa-top .nm{font-weight:700;font-size:15px;line-height:1.2}
   .wa-top .nm small{display:block;font-weight:400;font-size:11px;opacity:.85}
   .wa-top .dots{margin-left:auto;opacity:.8}
@@ -140,8 +142,20 @@
   .tryon .info .price{font-size:12px;color:var(--green-dark);font-weight:800;margin-top:2px}
   .tryon .info .buy{margin-top:7px;display:block;text-align:center;background:var(--grad);color:#fff;font-weight:700;font-size:12px;padding:7px;border-radius:8px}
 
+  /* VIDEO BANNER */
+  .vbanner-sec{padding-top:8px}
+  .vbanner-head{text-align:center;max-width:640px;margin:0 auto 20px}
+  .vbanner-head .eyebrow{margin-bottom:14px}
+  .vbanner-head h2{font-size:34px}
+  .vbanner{position:relative;max-width:900px;margin:0 auto;border-radius:24px;overflow:hidden;background:#0c160f;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .vbanner video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .vsound{position:absolute;bottom:16px;left:16px;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;background:rgba(12,22,15,.55);color:#fff;display:grid;place-items:center;backdrop-filter:blur(4px);transition:background .15s ease,transform .15s ease}
+  .vsound:hover{background:rgba(12,22,15,.82);transform:scale(1.06)}
+  .vsound svg{width:21px;height:21px}
+  .vsound.on{background:var(--green)}
+
   /* HOW IT WORKS */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:30px}
   .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative;box-shadow:var(--shadow-sm)}
   .step .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;color:#fff}
   .step .ic svg{width:25px;height:25px}
@@ -158,7 +172,7 @@
 
   /* LOOKBOOK */
   .b-soft{background:var(--cream-2)}
-  .look{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+  .look{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px}
   .look-card{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:transform .2s ease}
   .look-card:hover{transform:translateY(-6px)}
   .look-card .pic{aspect-ratio:3/4;position:relative}
@@ -169,8 +183,11 @@
   .look-card .cap span{font-size:13px;color:var(--muted)}
   @media(max-width:940px){.look{grid-template-columns:1fr 1fr}}
 
-  /* BENEFITS */
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  /* BENEFITS GRID */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  @media(max-width:840px){.grid3{grid-template-columns:1fr}}
+
+  /* WHY STORES / BENEFIT CARDS */
   .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm)}
   .card .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:16px}
   .card .ic svg{width:25px;height:25px}
@@ -182,7 +199,6 @@
   .card:nth-child(6) .ic{background:linear-gradient(135deg,#ff9a76,#ff7a59)}
   .card h3{font-size:18px;margin-bottom:8px}
   .card p{font-size:14.5px;color:var(--muted)}
-  @media(max-width:840px){.grid3{grid-template-columns:1fr}}
 
   /* LOOP / SPLIT */
   .split{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
@@ -200,7 +216,7 @@
   @media(max-width:840px){.split{grid-template-columns:1fr;gap:34px}}
 
   /* CTA */
-  .cta{background:linear-gradient(135deg,#0b3d2e,#0f6a4c);color:#fff;border-radius:28px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta{background:linear-gradient(135deg,#10805a,#1aa873);color:#fff;border-radius:28px;padding:48px 40px;text-align:center;position:relative;overflow:hidden}
   .cta::after{content:"";position:absolute;inset:0;background:
      radial-gradient(600px 320px at 82% -10%,rgba(52,211,153,.5),transparent 60%),
      radial-gradient(520px 300px at 5% 115%,rgba(255,61,151,.32),transparent 60%),
@@ -226,7 +242,7 @@
 <header class="nav">
   <div class="wrap nav-in">
     <div class="logo">
-      <span class="mark"><span class="ls"><span class="l">L</span><span class="s">S</span></span></span>
+      <span class="mark"><img src="header-logo.png" alt="LocalShoppie"></span>
       LocalShoppie
     </div>
     <nav class="nav-links">
@@ -239,7 +255,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
@@ -247,8 +262,8 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M12 3l2.2 5.3L20 9l-4 3.9.9 5.6L12 15.9 7.1 18.5 8 12.9 4 9l5.8-.7L12 3Z" fill="currentColor"/></svg>
         AI Stylist · WhatsApp Commerce
       </span>
-      <h1>Every shopper deserves <span class="hl">the best</span> — right on WhatsApp</h1>
-      <p class="lead">LocalShoppie turns your local store into a personal stylist. Shoppers scan a QR code, land on WhatsApp, and instantly see outfits from <b>your</b> collection that suit them — then buy in a tap.</p>
+      <h1>Scan. Style. <span class="hl">Shop.</span><br><span style="font-size:.62em;font-weight:600;color:var(--ink-soft)">- right on WhatsApp</span></h1>
+      <p class="lead">LocalShoppie turns your local store into a personal stylist. Shoppers scan a QR code, land on WhatsApp, and instantly see outfits from <b>your</b> collection that suit them — then try in a tap.</p>
       <div class="hero-cta">
         <a href="#demo" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="#fff"/></svg>
@@ -267,14 +282,13 @@
       </div>
     </div>
 
-    <!-- PHONE -->
     <div id="demo">
       <div class="phone-wrap">
         <div class="phone-glow"></div>
         <div class="phone">
           <div class="screen">
             <div class="wa-top">
-              <div class="av"><span class="l">L</span><span class="s">S</span></div>
+              <div class="av"><img src="header-logo.png" alt="LS"></div>
               <div class="nm">LocalShoppie Stylist<small>online</small></div>
               <div class="dots"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></div>
             </div>
@@ -292,12 +306,25 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- VIDEO BANNER -->
+<section class="vbanner-sec">
+  <div class="wrap">
+    <div class="vbanner-head">
+      <span class="eyebrow">See it in action</span>
+      <h2>One scan, a whole new look</h2>
+    </div>
+    <div class="vbanner">
+      <video src="banner-v7.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      <button class="vsound" id="vsound" aria-label="Unmute video"></button>
+    </div>
+  </div>
+</section>
+
 <section id="how">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">How it works</span>
-      <h2>From a QR code on the rack to a confirmed sale</h2>
+      <h2>From a QR code to a confirmed sale</h2>
       <p class="lead" style="margin-top:14px">No app downloads, no forms. The whole journey lives inside WhatsApp — where your customers already are every day.</p>
     </div>
     <div class="steps">
@@ -332,7 +359,6 @@
   </div>
 </section>
 
-<!-- LOOKBOOK -->
 <section id="lookbook" class="b-soft">
   <div class="wrap">
     <div class="sec-head">
@@ -344,7 +370,6 @@
   </div>
 </section>
 
-<!-- WHY STORES -->
 <section id="why">
   <div class="wrap">
     <div class="sec-head">
@@ -386,7 +411,6 @@
   </div>
 </section>
 
-<!-- LOOP -->
 <section id="loop" class="b-soft">
   <div class="wrap">
     <div class="sec-head">
@@ -403,12 +427,11 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section id="cta">
   <div class="wrap">
     <div class="cta">
       <span class="eyebrow" style="background:rgba(255,255,255,.14);color:#fff">Get started</span>
-      <h2 style="margin-top:18px">Put a stylist in every customer&rsquo;s pocket</h2>
+      <h2 style="margin-top:18px">A stylist in everyone&rsquo;s pocket</h2>
       <p>Set up LocalShoppie QR codes in your store and start turning footfall into measurable WhatsApp sales — using the stock you already have.</p>
       <div class="cta-actions">
         <a href="https://wa.me/918309883701" target="_blank" rel="noopener" class="btn btn-wa">
@@ -426,7 +449,7 @@
     <div class="foot-top">
       <div>
         <div class="logo">
-          <span class="mark"><span class="ls"><span class="l">L</span><span class="s">S</span></span></span>
+          <span class="mark"><img src="header-logo.png" alt="LocalShoppie"></span>
           LocalShoppie
         </div>
         <p style="margin-top:10px;max-width:320px">An AI stylist on WhatsApp for local stores.</p>
@@ -632,6 +655,44 @@
   }
   document.getElementById('replayBtn').addEventListener('click', play);
   play();
+
+  /* video banner: autoplays muted on loop; a button lets visitors unmute/mute.
+     Pauses when scrolled out of view, resumes when back. */
+  (function(){
+    var vid=document.querySelector('.vbanner video');
+    var btn=document.getElementById('vsound');
+    if(!vid) return;
+    vid.muted=true;
+    var inView=true;
+    var ICON_MUTED='<svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/><path d="M16.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    var ICON_ON='<svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/><path d="M16 9a4 4 0 0 1 0 6M18.5 7a7 7 0 0 1 0 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+    function paint(){
+      if(!btn) return;
+      btn.classList.toggle('on', !vid.muted);
+      btn.innerHTML = vid.muted ? ICON_MUTED : ICON_ON;
+      btn.setAttribute('aria-label', vid.muted ? 'Unmute video' : 'Mute video');
+    }
+    function refresh(){
+      if(inView){ var p=vid.play(); if(p&&p.catch) p.catch(function(){}); }
+      else { vid.pause(); }
+    }
+    if(btn){
+      btn.addEventListener('click', function(){
+        vid.muted = !vid.muted;
+        if(!vid.muted){ var p=vid.play(); if(p&&p.catch) p.catch(function(){}); }
+        paint();
+      });
+    }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          inView = e.isIntersecting && e.intersectionRatio>=0.4;
+          refresh();
+        });
+      }, {threshold:[0, 0.4]}).observe(vid);
+    }
+    paint();
+  })();
 </script>
 </body>
 </html>
